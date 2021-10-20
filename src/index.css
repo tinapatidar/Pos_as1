@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  text-decoration: none;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.row.center {
+  align-items: center;
+}
+
+
+.text-right {
+  text-align: right;
+}
+.addBtn{
+  color: black;
+}
