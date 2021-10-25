@@ -46,16 +46,26 @@
         box-sizing:border-box;;
         padding: 20px;
        
-      }
-      
+    }
       .grid-container > div {
-        background-color: rgba(250, 212, 212, 0.8);
         text-align: center;
         padding: 20px 0;
         font-size: 20px;
+        background-color: rgb(192, 243, 243);
         
       }
-
+      .grid-container>div:nth-child(odd){
+        background-color: rgb(243, 238, 192);
+      }
+      .grid-container>div:nth-child(5n+1){
+          background-color: rgb(253, 203, 253);
+      }
+      .grid-container>div:nth-child(5n){
+        background-color:rgb(252, 149, 149)
+    }
+    .grid-container>div:nth-child(5n-1){
+        background-color: rgb(208, 208, 253);
+    }
       .col-2{
           flex: 2;
       }

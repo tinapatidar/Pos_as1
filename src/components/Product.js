@@ -9,7 +9,7 @@ export default function Product(props) {
   const { product, onAdd } = props;
 
   return (  
-    <Card variant="outlined"  >
+    <Card  variant="outlined"  >
     <CardContent>
       <Typography variant="h5" component="div">
        {product.name}

@@ -3,12 +3,13 @@ import Product from './Product';
 import './Style.css';
 import debounce from "lodash.debounce";
 import Stack from '@mui/material/Stack';
-import { Button,Input,Typography ,Box,Grid} from '@material-ui/core';
+import {Input,Typography ,Box,Grid} from '@material-ui/core';
 
  function Main(props) {
     const { products, onAdd} = props;
     const[text,setText]= useState("");
     let filteredProduct = products
+    
     
     if (text!==""){
      filteredProduct=  products.filter((product)=>{
@@ -26,12 +27,11 @@ import { Button,Input,Typography ,Box,Grid} from '@material-ui/core';
       <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">
          <Typography variant="h5">ITEMS</Typography>
         <Input type="text" name ="text" placeholder="search " variant="outlined"  onChange= {debouncedChangeHandler} />
-        <Button color="primary" variant="contained">Add Item</Button>
       </Stack>
     </Box>
       <Grid className="grid-container" >
         {filteredProduct.map((product) => (
-          <Product key={product.id} product={product} onAdd={onAdd}></Product>
+          <Product key={product.id} product={product} onAdd={onAdd}  ></Product>
         ))}
       </Grid>
       <Typography>{filteredProduct.length === 0 && text !== "" && "No matches..."}</Typography>

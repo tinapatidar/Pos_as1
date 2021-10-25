@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CalculateIcon from '@mui/icons-material/Calculate';
 
@@ -21,11 +20,10 @@ export default function Navbar() {
           >
           <CalculateIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml:60}}>
             POS Screen
           </Typography>
           <Typography variant="h6">Hello John</Typography>
-          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>
