@@ -1,5 +1,5 @@
-import React from 'react';
-import {Box,Typography,Table} from '@material-ui/core'
+import React,{useState} from 'react';
+import {Box,Typography,Table,Input} from '@material-ui/core'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -7,11 +7,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 function Cart(props) {
-  const { cartItems, price } = props;
-  const discount = price < 200 ? 0 : 20;
-  const taxPrice = price * 0.14;
-  const totalPrice = price + taxPrice - discount;
-
+  const [disc,setDisc] = useState()
+  const { cartItems, price,onAdd, onRemove } = props;
+  const taxPrice = price>1000?100:0;
+  // const totalPrice = price + taxPrice - disc;
+  
+//  const handleInput=()=>{
+//    const discIn={
+//      'Discount':disc
+//    }
+//    console.log(discIn)
+//  }
   return (
  <Box className="cartContainer">
   <Typography variant="h4">Cart</Typography>
@@ -19,43 +25,52 @@ function Cart(props) {
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Item </TableCell>
+            <TableCell align="left">Item </TableCell>
             <TableCell align="right">Qty</TableCell>
+            <TableCell align="right">Dec/Inc</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="right">Total</TableCell>
           </TableRow>
         </TableHead>
-        <Box  justifyContent="center">
-        {cartItems.length === 0 && <div>
-          <div className="row">
-              <Typography component="div">SubTotal: </Typography>
-              <Typography component="div" align="right">RS 0.00</Typography>
+        < >
+        {cartItems.length === 0 && <>
+          <div className="total">
+              <Typography >SubTotal: </Typography>
+              <Typography  align="right">RS 0.00</Typography>
             </div>
-            <div className="row">
-              <Typography component="div">Tax :</Typography>
-              <Typography component="div" align="right">RS 0.00</Typography>
+            <div className="total">
+              <Typography >Tax :</Typography>
+              <Typography  align="right">RS 0.00</Typography>
             </div>
-            <div className="row">
-              <Typography  component="div">Discount:</Typography>
-              <Typography  component="div" align="right"> RS 0.00</Typography>
+            <div className="total">
+              <Typography >Discount:</Typography>
+              <Typography   align="right"> RS 0.00</Typography>
             </div>
-            <div className="row">
-              <Typography  component="div" ><b>PAY AMOUNT:</b></Typography>
-              <Typography  component="div" align="right"><b> RS 0.00</b></Typography>
+            <div className="total">
+              <Typography  ><b>PAY:</b></Typography>
+              <Typography  align ="right"><b> RS.0.00</b></Typography>
             </div>
-        </div>
+        </>
         }
-      </Box>
+      </>
         <TableBody>
           {cartItems.map((item) => (
             <TableRow
               key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell >
                 {item.name}
               </TableCell>
               <TableCell align="right">{item.qty}</TableCell>
+              <TableCell align="right">
+               <button onClick={() => onRemove(item)} >
+                -
+              </button>{' '}
+              <button onClick={() => onAdd(item)} >
+                +
+              </button>{' '}
+           </TableCell>
               <TableCell align="right">{item.price}</TableCell>
               <TableCell align="right">{item.price * item.qty}</TableCell>
             </TableRow>
@@ -67,21 +82,24 @@ function Cart(props) {
           <>
             <hr/>
             <div className="row">
-              <Typography component="div">SubTotal: </Typography>
-              <Typography component="div">RS. {price.toFixed(2)}</Typography>
+              <Typography >SubTotal: </Typography>
+              <Typography >RS. {price.toFixed(2)}</Typography>
             </div>
             <div className="row">
-              <Typography component="div">Tax :</Typography>
-              <Typography component="div">RS. {taxPrice.toFixed(2)}</Typography>
+              <Typography >Tax :</Typography>
+              <Typography >RS. {taxPrice.toFixed(2)}</Typography>
             </div>
             <div className="row">
-              <Typography  component="div">Discount:</Typography>
-              <Typography  component="div"> RS. {discount.toFixed(2)}</Typography>
+              <Typography  >Discount:</Typography>
+              <Input type="text" onChange={e=>setDisc(e.target.value)} />
+              {/* <button onClick={handleInput}>Disc</button> */}
+           
+              <Typography  >  {disc}%</Typography>
             </div>
             <div className="row">
-              <Typography  component="div" ><b>PAY AMOUNT</b></Typography>
-              <Typography  component="div">
-                <b>RS.{totalPrice.toFixed(2)}</b>
+              <Typography ><b>PAY AMOUNT</b></Typography>
+              <Typography  >
+                <b>RS.{Number((price*(1-(disc/100)))+taxPrice).toFixed(2)}</b>
               </Typography>
             </div>
           </>
@@ -89,5 +107,4 @@ function Cart(props) {
     </Box>
   );
 }
-
 export default Cart

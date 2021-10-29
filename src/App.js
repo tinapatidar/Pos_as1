@@ -17,7 +17,7 @@ function App() {
   const { products } = data;
   const[price,setPrice]=useState(0);
   const [cartItems, setCartItems] = useState([]);
-
+  
   useEffect(() => {
     setPrice(cartItems.reduce((a, c) => a + c.qty * c.price, 0));
   }, [cartItems]);
@@ -58,12 +58,14 @@ function App() {
           </Item>
         </Grid>
        <Grid item xs={6} md={4}>
-       <Item> <Cart
+       <Item>
+       <Cart
           cartItems={cartItems}
           onAdd={onAdd}
           price={price}
           onRemove={onRemove}
-       ></Cart></Item>
+       ></Cart>
+       </Item>
         </Grid>
       </Grid>    
     </Box>

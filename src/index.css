@@ -11,13 +11,16 @@ a {
 }
 .row {
   display: flex;
-  justify-content: space-between;
-  margin: 10px;
-}
-.row.center {
-  align-items: center;
+  justify-content:space-between;
+  margin: 5px;
 }
 
+.total{
+  display:flex;
+  justify-content:space-between;
+  padding: 5px;
+ 
+}
 
 .text-right {
   text-align: right;

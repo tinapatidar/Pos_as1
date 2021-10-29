@@ -34,7 +34,7 @@ import {Input,Typography ,Box,Grid} from '@material-ui/core';
           <Product key={product.id} product={product} onAdd={onAdd}  ></Product>
         ))}
       </Grid>
-      <Typography>{filteredProduct.length === 0 && text !== "" && "No matches..."}</Typography>
+      <Typography>{filteredProduct.length === 0 && text !== "" && "No Item Found..."}</Typography>
     </Box>
   );
 }
